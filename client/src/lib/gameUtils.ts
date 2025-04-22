@@ -2,8 +2,8 @@ import type { GameCase } from "@/contexts/GameContext";
 
 // Monetary values used in the game (26 total) - Max ₹1000
 export const MONETARY_VALUES = [
-  0.1, 0.5, 1, 2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 100, 125, 150, 
-  200, 250, 300, 400, 500, 600, 700, 800, 1000
+  0.1, 0.5, 1, 2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 100, 125, 150, 175 
+  200, 250, 300, 400, 500, 600, 800, 1000
 ];
 
 // Format currency for display
@@ -58,9 +58,9 @@ export function calculateBankerOffer(remainingValues: number[], round: number): 
   const averageValue = totalValue / remainingValues.length;
   
   // Banker offer percentage increases as game progresses
-  // Starting at ~30% of expected value in erly rounds
+  // Starting at ~30% of expected value in early rounds
   // Moving towards ~95% in later rounds
-  const offerPercentage = Math.min(0.2 + (round * 0.1), 0.85);
+  const offerPercentage = Math.min(0.1 + (round * 0.1), 0.80);
   
   // Calculate offer
   let offer = Math.round(averageValue * offerPercentage);
