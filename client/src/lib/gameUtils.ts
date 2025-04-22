@@ -28,9 +28,21 @@ function shuffleArray<T>(array: T[]): T[] {
   return result;
 }
 
-// Create cases with shuffled monetary values
-export function shuffleValues(): GameCase[] {
-  const shuffledValues = shuffleArray(MONETARY_VALUES);
+// Create cases with shuffled monetary values scaled to deposit amount
+export function shuffleValues(depositAmount?: number): GameCase[] {
+  let valuesToUse = [...MONETARY_VALUES];
+  
+  // If deposit amount is provided, scale values accordingly
+  if (depositAmount) {
+    // Calculate scaling factor: max prize = 10x deposit
+    const maxPrize = depositAmount * 10;
+    const scaleFactor = maxPrize / 1000; // 1000 is our default max
+    
+    // Scale all values proportionally
+    valuesToUse = MONETARY_VALUES.map(value => value * scaleFactor);
+  }
+  
+  const shuffledValues = shuffleArray(valuesToUse);
   return Array.from({ length: 26 }, (_, i) => ({
     id: i + 1,
     value: shuffledValues[i],

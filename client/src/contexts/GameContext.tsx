@@ -15,16 +15,19 @@ export type GameState = {
   currentRound: number;
   roundsConfig: { round: number; casesToOpen: number }[];
   casesOpenedThisRound: number;
-  gamePhase: "initial" | "selection" | "offer" | "finished";
+  gamePhase: "deposit" | "initial" | "selection" | "offer" | "finished";
   bankerOffer: number | null;
   isOfferModalOpen: boolean;
   isOutcomeModalOpen: boolean;
   dealAccepted: boolean;
   acceptedOffer: number | null;
   gameInstruction: string;
+  depositAmount: number | null;
+  isDepositModalOpen: boolean;
 };
 
 type GameAction =
+  | { type: "SET_DEPOSIT"; amount: number }
   | { type: "SELECT_PLAYER_CASE"; caseId: number }
   | { type: "OPEN_CASE"; caseId: number }
   | { type: "SHOW_BANKER_OFFER" }
@@ -40,18 +43,38 @@ const initialState: GameState = {
   currentRound: 0,
   roundsConfig: getGameRounds(),
   casesOpenedThisRound: 0,
-  gamePhase: "initial",
+  gamePhase: "deposit",
   bankerOffer: null,
   isOfferModalOpen: false,
   isOutcomeModalOpen: false,
   dealAccepted: false,
   acceptedOffer: null,
-  gameInstruction: "Please select your case",
+  gameInstruction: "Please enter your deposit amount",
+  depositAmount: null,
+  isDepositModalOpen: true,
 };
 
 // Reducer function
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
+    case "SET_DEPOSIT": {
+      // Validate deposit amount (50 to 1000)
+      const amount = Math.max(50, Math.min(1000, action.amount));
+      
+      // Generate cases with values scaled based on deposit amount
+      // Max value will be 10x the deposit amount
+      const scaledCases = shuffleValues(amount);
+      
+      return {
+        ...state,
+        depositAmount: amount,
+        isDepositModalOpen: false,
+        gamePhase: "initial",
+        cases: scaledCases,
+        gameInstruction: "Please select your case",
+      };
+    }
+    
     case "SELECT_PLAYER_CASE": {
       const updatedCases = state.cases.map((c) => 
         c.id === action.caseId ? { ...c, isPlayerCase: true } : c
@@ -167,9 +190,12 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     }
     
     case "RESET_GAME": {
+      // Return to deposit phase when resetting game
       return {
         ...initialState,
-        cases: shuffleValues(),
+        isDepositModalOpen: true,
+        gamePhase: "deposit",
+        cases: [],
         roundsConfig: getGameRounds(),
       };
     }
@@ -192,7 +218,8 @@ const GameContext = createContext<{
 export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(gameReducer, {
     ...initialState,
-    cases: shuffleValues(),
+    // Initially, we start without cases until deposit is made
+    cases: [],
   });
 
   // Show final outcome when only 2 cases remain
