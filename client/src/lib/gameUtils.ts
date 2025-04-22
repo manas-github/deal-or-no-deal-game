@@ -2,7 +2,7 @@ import type { GameCase } from "@/contexts/GameContext";
 
 // Monetary values used in the game (26 total) - Max ₹1000
 export const MONETARY_VALUES = [
-  0.1, 0.5, 1, 2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 100, 125, 150, 175 
+  0.1, 0.5, 1, 2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 100, 125, 150, 175, 
   200, 250, 300, 400, 500, 600, 800, 1000
 ];
 
