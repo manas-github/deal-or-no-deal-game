@@ -5,6 +5,7 @@ import CasesGrid from "./CasesGrid";
 import GameInfo from "./GameInfo";
 import BankerOfferModal from "./BankerOfferModal";
 import GameOutcomeModal from "./GameOutcomeModal";
+import DepositModal from "./DepositModal";
 import { useGame } from "@/contexts/GameContext";
 import useGameSounds from "@/hooks/useGameSounds";
 
@@ -102,6 +103,9 @@ export default function GameContainer() {
           playSound("winSound");
         }}
       />
+      
+      {/* Deposit Modal */}
+      <DepositModal />
     </div>
   );
 }
