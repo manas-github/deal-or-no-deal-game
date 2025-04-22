@@ -1,19 +1,19 @@
 import type { GameCase } from "@/contexts/GameContext";
 
-// Monetary values used in the game (26 total)
+// Monetary values used in the game (26 total) - Max ₹1000
 export const MONETARY_VALUES = [
-  0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000, 25000, 
-  50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000
+  0.1, 0.5, 1, 2, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 100, 125, 150, 
+  200, 250, 300, 400, 500, 600, 700, 800, 1000
 ];
 
 // Format currency for display
 export function formatCurrency(value: number): string {
   if (value < 1) {
-    return `$${value.toFixed(2)}`;
+    return `₹${value.toFixed(2)}`;
   }
-  return new Intl.NumberFormat('en-US', { 
+  return new Intl.NumberFormat('en-IN', { 
     style: 'currency', 
-    currency: 'USD',
+    currency: 'INR',
     maximumFractionDigits: 0
   }).format(value);
 }
@@ -55,11 +55,17 @@ export function calculateBankerOffer(remainingValues: number[], round: number): 
   
   // Make sure offer is a "nice" number
   if (offer > 100) {
-    // Round to nearest 100
-    offer = Math.round(offer / 100) * 100;
-  } else if (offer > 10) {
-    // Round to nearest 10
-    offer = Math.round(offer / 10) * 10;
+    // Round to nearest 25
+    offer = Math.round(offer / 25) * 25;
+  } else if (offer > 20) {
+    // Round to nearest 5
+    offer = Math.round(offer / 5) * 5;
+  } else if (offer > 5) {
+    // Round to nearest 2
+    offer = Math.round(offer / 2) * 2;
+  } else {
+    // Keep small offers as they are or round to nearest 0.5
+    offer = Math.round(offer * 2) / 2;
   }
   
   return offer;
