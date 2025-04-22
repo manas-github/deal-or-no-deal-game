@@ -2,6 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Game specific custom colors */
+@layer base {
+  :root {
+    --game-blue: 212 70% 20%;
+    --game-gold: 45 100% 50%;
+    --deal: 142 70% 45%;
+    --no-deal: 0 70% 50%;
+  }
+}
+
+/* Game colors */
+.bg-game-blue {
+  background-color: hsl(var(--game-blue));
+}
+
+.text-game-blue {
+  color: hsl(var(--game-blue));
+}
+
+.bg-game-gold {
+  background-color: hsl(var(--game-gold));
+}
+
+.text-game-gold {
+  color: hsl(var(--game-gold));
+}
+
+.border-game-gold {
+  border-color: hsl(var(--game-gold));
+}
+
+.bg-deal {
+  background-color: hsl(var(--deal));
+}
+
+.bg-no-deal {
+  background-color: hsl(var(--no-deal));
+}
+
+/* Modal animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-overlay {
+  animation: fadeIn 0.3s ease forwards;
+}
+
 :root {
       --background: 0 0% 100%;
 --foreground: 20 14.3% 4.1%;

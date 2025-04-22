@@ -52,14 +52,14 @@ export default function GameOutcomeModal({
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 modal-overlay bg-black bg-opacity-70">
+    <div className="fixed inset-0 flex items-center justify-center z-50 modal-overlay bg-black bg-opacity-90">
       <div className="bg-game-blue border-4 border-game-gold rounded-lg max-w-md w-full mx-4 p-6 shadow-2xl transform transition-all">
         <div className="text-center">
           <h2 className="text-3xl font-heading font-extrabold mb-2">GAME OVER</h2>
           <p className="text-gray-300 mb-6">Here's how you did!</p>
           
           <div className="space-y-6 mb-6">
-            <div>
+            <div className="bg-black bg-opacity-80 rounded-lg p-5 border border-game-gold/50">
               <p className="text-xl mb-1">Your Case Contained:</p>
               <p className="text-4xl font-heading font-black text-game-gold">
                 {formatCurrency(playerCaseValue)}
@@ -67,7 +67,7 @@ export default function GameOutcomeModal({
             </div>
             
             {acceptedOffer !== null && (
-              <div className="border-t border-b border-gray-700 py-4 my-4">
+              <div className="bg-black bg-opacity-80 rounded-lg p-5 border border-game-gold/50 my-4">
                 <p className="text-xl mb-1">You Accepted:</p>
                 <p className="text-4xl font-heading font-black text-game-gold">
                   {formatCurrency(acceptedOffer)}
@@ -75,7 +75,7 @@ export default function GameOutcomeModal({
               </div>
             )}
             
-            <div>
+            <div className="bg-black bg-opacity-70 rounded-lg p-4">
               {outcomeMessage}
             </div>
           </div>
