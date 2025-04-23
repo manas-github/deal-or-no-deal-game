@@ -67,7 +67,7 @@ export default function DepositModal() {
               <p className="text-3xl font-heading font-black text-game-gold">
                 {formatCurrency(maxPrize)}
               </p>
-              <p className="text-gray-400 text-sm mt-1">(10x your deposit)</p>
+              <p className="text-gray-400 text-sm mt-1">(5x your deposit)</p>
             </div>
             
             <button 

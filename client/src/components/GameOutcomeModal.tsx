@@ -23,21 +23,21 @@ export default function GameOutcomeModal({
     if (difference > 0) {
       outcomeMessage = (
         <>
-          <p className="text-xl mb-1">You could have won {formatCurrency(difference)} more!</p>
+          <p className="text-xl mb-1 text-gray-300">You could have won {formatCurrency(difference)} more!</p>
           <p className="text-lg text-gray-300">Better luck next time!</p>
         </>
       );
     } else if (difference < 0) {
       outcomeMessage = (
         <>
-          <p className="text-xl mb-1">You got {formatCurrency(Math.abs(difference))} more than your case!</p>
+          <p className="text-xl mb-1 text-gray-300">You got {formatCurrency(Math.abs(difference))} more than your case!</p>
           <p className="text-lg text-gray-300">Great deal!</p>
         </>
       );
     } else {
       outcomeMessage = (
         <>
-          <p className="text-xl mb-1">You accepted exactly what your case was worth!</p>
+          <p className="text-xl mb-1 text-gray-300">You accepted exactly what your case was worth!</p>
           <p className="text-lg text-gray-300">Perfect balance!</p>
         </>
       );
@@ -45,7 +45,7 @@ export default function GameOutcomeModal({
   } else {
     outcomeMessage = (
       <>
-        <p className="text-xl mb-1">You kept your case to the end!</p>
+        <p className="text-xl mb-1 text-gray-300">You kept your case to the end!</p>
         <p className="text-lg text-gray-300">Hope it was worth it!</p>
       </>
     );
@@ -60,7 +60,7 @@ export default function GameOutcomeModal({
           
           <div className="space-y-6 mb-6">
             <div className="bg-black bg-opacity-80 rounded-lg p-5 border border-game-gold/50">
-              <p className="text-xl mb-1">Your Case Contained:</p>
+              <p className="text-xl mb-1 text-gray-300">Your Case Contained:</p>
               <p className="text-4xl font-heading font-black text-game-gold">
                 {formatCurrency(playerCaseValue)}
               </p>
@@ -68,7 +68,7 @@ export default function GameOutcomeModal({
             
             {acceptedOffer !== null && (
               <div className="bg-black bg-opacity-80 rounded-lg p-5 border border-game-gold/50 my-4">
-                <p className="text-xl mb-1">You Accepted:</p>
+                <p className="text-xl mb-1 text-gray-300">You Accepted:</p>
                 <p className="text-4xl font-heading font-black text-game-gold">
                   {formatCurrency(acceptedOffer)}
                 </p>
