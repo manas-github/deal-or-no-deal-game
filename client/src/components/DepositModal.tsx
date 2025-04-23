@@ -35,7 +35,7 @@ export default function DepositModal() {
   };
 
   // Calculate maximum prize (10x deposit)
-  const maxPrize = amount * 10;
+  const maxPrize = amount * 5;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 modal-overlay bg-black bg-opacity-90">

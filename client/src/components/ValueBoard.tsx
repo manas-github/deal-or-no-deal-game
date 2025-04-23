@@ -12,7 +12,7 @@ export default function ValueBoard({ cases }: ValueBoardProps) {
   const { depositAmount } = state;
   
   // Calculate max value (10x deposit) and scale factor
-  const maxValue = depositAmount ? depositAmount * 10 : 1000;
+  const maxValue = depositAmount ? depositAmount * 5 : 1000;
   const scaleFactor = maxValue / 1000;
   
   // Scale the values based on deposit amount
