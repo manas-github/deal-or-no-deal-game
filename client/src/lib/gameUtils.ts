@@ -60,7 +60,7 @@ export function calculateBankerOffer(remainingValues: number[], round: number): 
   // Banker offer percentage increases as game progresses
   // Starting at ~30% of expected value in early rounds
   // Moving towards ~95% in later rounds
-  const offerPercentage = Math.min(0.1 + (round * 0.1), 0.80);
+  const offerPercentage = Math.min(0.1 + (round * 0.1), 0.75);
   
   // Calculate offer
   let offer = Math.round(averageValue * offerPercentage);
